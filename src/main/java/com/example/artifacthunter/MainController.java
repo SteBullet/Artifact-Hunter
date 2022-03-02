@@ -9,6 +9,6 @@ public class MainController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Trying to push something!");
+        welcomeText.setText("123131819984156g!");
     }
 }
