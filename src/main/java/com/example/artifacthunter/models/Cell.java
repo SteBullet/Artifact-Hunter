@@ -1,17 +1,41 @@
 package com.example.artifacthunter.models;
 
-import java.util.List;
+import java.util.Set;
 
 public class Cell {
-    private List<Status> status;
 
-    public List<Status> getStatus() {
+    private Set<Status> status;
+    private char row;
+    private char col;
+
+    public Cell(String id) {
+        //status = Set.of(Status.NOT_VISITED); загуглить как работает!
+        //String[] index = id.split("a");
+        row = id.charAt(0);
+        col = id.charAt(1);
+    }
+
+    public Set<Status> getStatus() {
         return status;
     }
 
-    public void setStatus(List<Status> status) {
+    public void setStatus(Set<Status> status) {
         this.status = status;
     }
 
-    private String id;
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(char row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(char col) {
+        this.col = col;
+    }
 }

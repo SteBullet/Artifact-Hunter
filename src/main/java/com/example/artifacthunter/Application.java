@@ -1,10 +1,14 @@
 package com.example.artifacthunter;
 
+import com.example.artifacthunter.models.Cell;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application extends javafx.application.Application {
     @Override
@@ -16,7 +20,11 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
+    public static List<List<Cell>> field;
+
     public static void main(String[] args) {
+        field = new ArrayList<>();
+        field.add(Arrays.asList(new Cell("aa")));
         launch();
     }
 }
