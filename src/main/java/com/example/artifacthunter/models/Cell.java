@@ -9,10 +9,10 @@ public class Cell {
     private char col;
 
     public Cell(String id) {
-        //status = Set.of(Status.NOT_VISITED); загуглить как работает!
+        status = Set.of(Status.NOT_VISITED);
         //String[] index = id.split("a");
-        row = id.charAt(0);
-        col = id.charAt(1);
+        row = id.charAt(1);
+        col = id.charAt(0);
     }
 
     public Set<Status> getStatus() {

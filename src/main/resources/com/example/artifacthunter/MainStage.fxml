@@ -22,15 +22,15 @@
        <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <Button fx:id="cb" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <Button fx:id="bb" alignment="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Button fx:id="cc" alignment="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-         <Button fx:id="bc" alignment="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Button fx:id="aa" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
-         <Button fx:id="ac" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.rowIndex="2" />
-         <Button fx:id="ab" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.rowIndex="1" />
-         <Button fx:id="ca" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="2" />
-         <Button fx:id="ba" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="1" />
+         <Button fx:id="21" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         <Button fx:id="11" alignment="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Button fx:id="22" alignment="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         <Button fx:id="12" alignment="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button fx:id="00" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+         <Button fx:id="02" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.rowIndex="2" />
+         <Button fx:id="01" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.rowIndex="1" />
+         <Button fx:id="20" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="2" />
+         <Button fx:id="10" alignment="CENTER" layoutX="35.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" GridPane.columnIndex="1" />
       </children>
    </GridPane>
     <Button onAction="#onHelloButtonClick" prefWidth="55.0" text="Hello!" />

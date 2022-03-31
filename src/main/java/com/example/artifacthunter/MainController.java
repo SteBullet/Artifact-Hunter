@@ -28,15 +28,26 @@ public class MainController implements Initializable {
     @FXML
     private GridPane playField;
 
-    //private List<List<Cell>> field;
+    private List<List<Cell>> field;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        field = new ArrayList<>(3);
         for (List<Cell> line : field)
+        {
             line = new ArrayList<>(3);
-        playField.getChildren().stream().forEach(cell -> field.get(GridPane.getRowIndex(cell)).add(GridPane.getColumnIndex(cell), new Cell(cell.getId())));
-
-        Button currentCell = (Button)playField.getChildren().stream().filter(cell -> cell.getId() == "aa").findFirst().orElseThrow();
+            for (Cell cell : line)
+                cell = new Cell("00");
+        }
+        //playField.getChildren().stream().forEach(cell -> field.get(GridPane.getRowIndex(cell)).add(GridPane.getColumnIndex(cell), new Cell(cell.getId())));
+        System.out.println(playField.getChildren().size());
+        playField.getChildren().forEach(cell ->
+        {
+            System.out.println(GridPane.getRowIndex(cell) + " " + GridPane.getColumnIndex(cell));
+            field.get(GridPane.getRowIndex(cell)).get(GridPane.getColumnIndex(cell)).setCol(cell.getId().charAt(0));
+            field.get(GridPane.getRowIndex(cell)).get(GridPane.getColumnIndex(cell)).setRow(cell.getId().charAt(1));
+        });
+        Button currentCell = (Button)playField.getChildren().stream().filter(cell -> cell.getId() == "10").findFirst().orElseThrow();
         currentCell.setText("Ура");
     }
 
