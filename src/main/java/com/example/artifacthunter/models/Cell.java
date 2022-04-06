@@ -1,25 +1,35 @@
 package com.example.artifacthunter.models;
 
-import java.util.Set;
+import javafx.scene.image.ImageView;
+
+//import java.util.Set;
 
 public class Cell {
 
-    private Set<Status> status;
-    private char row;
-    private char col;
+    private Status status;
+    private int row;
+    private int col;
+    private ImageView iv;
 
-    public Cell(String id) {
-        status = Set.of(Status.NOT_VISITED);
-        //String[] index = id.split("a");
-        row = id.charAt(1);
-        col = id.charAt(0);
+    public Cell(int Col, int Row, ImageView Iv) {
+        status = Status.NOT_VISITED;
+        //String[] index = id.split("separator");
+        row = Row;
+        col = Col;
+        iv = Iv;
     }
 
-    public Set<Status> getStatus() {
+    public void setIndex(int Col, int Row) {
+        //String[] index = id.split("separator");
+        row = Row;
+        col = Col;
+    }
+
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Set<Status> status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -27,7 +37,7 @@ public class Cell {
         return row;
     }
 
-    public void setRow(char row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
@@ -35,7 +45,15 @@ public class Cell {
         return col;
     }
 
-    public void setCol(char col) {
+    public void setCol(int col) {
         this.col = col;
+    }
+
+    public ImageView getIv() {
+        return iv;
+    }
+
+    public void setIv(ImageView iv) {
+        this.iv = iv;
     }
 }
