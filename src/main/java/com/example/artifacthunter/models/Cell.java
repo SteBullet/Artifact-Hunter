@@ -1,6 +1,6 @@
 package com.example.artifacthunter.models;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 //import java.util.Set;
 
@@ -9,21 +9,21 @@ public class Cell {
     private Status status;
     private int row;
     private int col;
-    private ImageView iv;
+    private Image image;
 
-    public Cell(int Col, int Row, ImageView Iv) {
+    public Cell(int Col, int Row, Image image) {
         status = Status.NOT_VISITED;
         //String[] index = id.split("separator");
         row = Row;
         col = Col;
-        iv = Iv;
+        this.image = image;
     }
 
-    public void setIndex(int Col, int Row) {
+    /*public void setIndex(int Col, int Row) {
         //String[] index = id.split("separator");
         row = Row;
         col = Col;
-    }
+    }*/
 
     public Status getStatus() {
         return status;
@@ -31,6 +31,12 @@ public class Cell {
 
     public void setStatus(Status status) {
         this.status = status;
+        image = switch (status) {
+            case VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Visited Cell.png"));
+            case PLAYER_VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Player.png"));
+            case NOT_VISITED_MARKED -> new Image(getClass().getResourceAsStream("/Sprites/Marked Cell.png"));
+            default -> new Image(getClass().getResourceAsStream("/Sprites/Default Cell.png"));
+        };
     }
 
     public int getRow() {
@@ -49,11 +55,11 @@ public class Cell {
         this.col = col;
     }
 
-    public ImageView getIv() {
-        return iv;
+    public Image getImage() {
+        return image;
     }
 
-    public void setIv(ImageView iv) {
-        this.iv = iv;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

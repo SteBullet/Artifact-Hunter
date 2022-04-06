@@ -1,22 +1,26 @@
 package com.example.artifacthunter;
 
 import com.example.artifacthunter.models.Cell;
-import javafx.event.EventHandler;
+import com.example.artifacthunter.models.Status;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController implements Initializable {
+
+    private final Set<Status> NOT_VISITED_NOT_MARKED_SET = Set.of(Status.NOT_VISITED, Status.DANGEROUS_NOT_VISITED, Status.ARTIFACT_NOT_VISITED);
+
+    private final Set<Status> NOT_VISITED_MARKED_SET = Set.of(Status.NOT_VISITED_MARKED, Status.ARTIFACT_NOT_VISITED_MARKED, Status.DANGEROUS_NOT_VISITED_MARKED);
+
+    private int playerCol = 0, playerRow = 0;
+
     @FXML
     private Label welcomeText;
 
@@ -37,10 +41,10 @@ public class MainController implements Initializable {
         for (int i = 0; i < colCount; i++) {
             field.add(new ArrayList<>());
             for (int j = 0; j < rowCount; j++) {
-                //здесь будет блок кода, выбирающий изображение в зависимости от состояния cell в field
-                field.get(i).add(new Cell(i, j, new ImageView("F:\\JavaFX\\Artifact Hunter\\testimg.jpg")));
+                field.get(i).add(new Cell(i, j, new Image(getClass().getResourceAsStream("/Sprites/Default Cell.png"))));
             }
         }
+        field.get(playerCol).get(playerRow).setStatus(Status.PLAYER_VISITED);
         /*field = new ArrayList<>();
         for (int i = 0; i < playField.getRowCount(); i++)
         {
@@ -70,22 +74,35 @@ public class MainController implements Initializable {
         playField.getChildren().removeAll(playField.getChildren());
         for (int i = 0; i < colCount; i++) {
             for (int j = 0; j < rowCount; j++) {
-                ImageView iv = field.get(i).get(j).getIv();
+                ImageView iv = new ImageView();
+                iv.setImage(field.get(i).get(j).getImage());
                 iv.setId(i + "separator" + j);
-                iv.onMouseClickedProperty().set(Move(iv));
+                iv.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                        int col, row;
+                        String[] index = iv.getId().split("separator");
+                        col = Integer.parseInt(index[0]);
+                        row = Integer.parseInt(index[1]);
+                        if (Math.abs(playerCol - col) + Math.abs(playerRow - row) == 1) {
+                            field.get(playerCol).get(playerRow).setStatus(Status.VISITED);
+                            field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
+                            playerCol = col;
+                            playerRow = row;
+                            RefreshField(10, 10);
+                        }
+                    }
+                    else
+                        if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                            int col, row;
+                            String[] index = iv.getId().split("separator");
+                            col = Integer.parseInt(index[0]);
+                            row = Integer.parseInt(index[1]);
+                            //if (field.get(col).get(row).getStatus())
+                        }
+                });
                 playField.add(iv, i, j);
             }
         }
-    }
-
-    private EventHandler<? super MouseEvent> Move(ImageView iv) {
-        int col, row;
-        String[] index = iv.getId().split("separator");
-        col = Integer.parseInt(index[0]);
-        row = Integer.parseInt(index[1]);
-        field.get(col).get(row).setIv(new ImageView("F:\\JavaFX\\Artifact Hunter\\rubick.jpg"));
-        //RefreshField(10, 10);
-        return null;
     }
 
 }
