@@ -23,8 +23,6 @@ public class Application extends javafx.application.Application {
     public static List<List<Cell>> field;
 
     public static void main(String[] args) {
-        //field = new ArrayList<>();
-        //field.add(Arrays.asList(new Cell("aa")));
         launch();
     }
 }
