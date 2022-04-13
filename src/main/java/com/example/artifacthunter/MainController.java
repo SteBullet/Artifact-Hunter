@@ -45,28 +45,6 @@ public class MainController implements Initializable {
             }
         }
         field.get(playerCol).get(playerRow).setStatus(Status.PLAYER_VISITED);
-        /*field = new ArrayList<>();
-        for (int i = 0; i < playField.getRowCount(); i++)
-        {
-            field.add(new ArrayList<>());
-            for (int j = 0; j < playField.getColumnCount(); j++)
-                field.get(i).add(new Cell("0separator0"));
-        }
-        playField.getChildren().forEach(cell ->
-        {
-            if (cell instanceof Button) {
-                field.get(GridPane.getRowIndex(cell)).get(GridPane.getColumnIndex(cell)).setIndex(cell.getId());
-            }
-        });
-        Button currentCell = playField.getChildren().forEach(cell ->
-        {
-            if (cell.getId() == "1separator0")
-            {
-                Button currentCell = (Button)cell;
-                currentCell.setText("5");
-            }
-        });
-        currentCell.setText("Ура");*/
         RefreshField(10,10);
     }
 
@@ -97,7 +75,15 @@ public class MainController implements Initializable {
                             String[] index = iv.getId().split("separator");
                             col = Integer.parseInt(index[0]);
                             row = Integer.parseInt(index[1]);
-                            //if (field.get(col).get(row).getStatus())
+                            if (NOT_VISITED_NOT_MARKED_SET.contains(field.get(col).get(row).getStatus()))
+                            {
+
+                            }
+                            else
+                                if (NOT_VISITED_MARKED_SET.contains(field.get(col).get(row).getStatus()))
+                                {
+
+                                }
                         }
                 });
                 playField.add(iv, i, j);
