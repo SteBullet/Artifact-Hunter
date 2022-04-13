@@ -70,21 +70,41 @@ public class MainController implements Initializable {
                         }
                     }
                     else
-                        if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                            int col, row;
-                            String[] index = iv.getId().split("separator");
-                            col = Integer.parseInt(index[0]);
-                            row = Integer.parseInt(index[1]);
-                            if (NOT_VISITED_NOT_MARKED_SET.contains(field.get(col).get(row).getStatus()))
-                            {
-
+                    if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                        int col, row;
+                        String[] index = iv.getId().split("separator");
+                        col = Integer.parseInt(index[0]);
+                        row = Integer.parseInt(index[1]);
+                        if (NOT_VISITED_NOT_MARKED_SET.contains(field.get(col).get(row).getStatus()))
+                        {
+                            switch(field.get(col).get(row).getStatus()) {
+                                case NOT_VISITED:
+                                    field.get(col).get(row).setStatus(Status.NOT_VISITED_MARKED);
+                                    break;
+                                case ARTIFACT_NOT_VISITED:
+                                    field.get(col).get(row).setStatus(Status.ARTIFACT_NOT_VISITED_MARKED);
+                                    break;
+                                case DANGEROUS_NOT_VISITED:
+                                    field.get(col).get(row).setStatus(Status.DANGEROUS_NOT_VISITED_MARKED);
+                                    break;
                             }
-                            else
-                                if (NOT_VISITED_MARKED_SET.contains(field.get(col).get(row).getStatus()))
-                                {
-
-                                }
                         }
+                        else
+                        if (NOT_VISITED_MARKED_SET.contains(field.get(col).get(row).getStatus()))
+                        {
+                            switch(field.get(col).get(row).getStatus()) {
+                                case NOT_VISITED_MARKED:
+                                    field.get(col).get(row).setStatus(Status.NOT_VISITED);
+                                    break;
+                                case ARTIFACT_NOT_VISITED_MARKED:
+                                    field.get(col).get(row).setStatus(Status.ARTIFACT_NOT_VISITED);
+                                    break;
+                                case DANGEROUS_NOT_VISITED_MARKED:
+                                    field.get(col).get(row).setStatus(Status.DANGEROUS_NOT_VISITED);
+                                    break;
+                            }
+                        }
+                    }
                 });
                 playField.add(iv, i, j);
             }
