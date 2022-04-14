@@ -88,6 +88,7 @@ public class MainController implements Initializable {
                                     field.get(col).get(row).setStatus(Status.DANGEROUS_NOT_VISITED_MARKED);
                                     break;
                             }
+                            RefreshField(10, 10);
                         }
                         else
                         if (NOT_VISITED_MARKED_SET.contains(field.get(col).get(row).getStatus()))
@@ -103,6 +104,7 @@ public class MainController implements Initializable {
                                     field.get(col).get(row).setStatus(Status.DANGEROUS_NOT_VISITED);
                                     break;
                             }
+                            RefreshField(10, 10);
                         }
                     }
                 });
