@@ -14,8 +14,13 @@ import java.net.URL;
 import java.util.*;
 
 public class MainController implements Initializable {
+    /**
+     *
+     */
     private final Set<Status> NOT_VISITED_NOT_MARKED_SET = Set.of(Status.NOT_VISITED, Status.DANGEROUS_NOT_VISITED, Status.ARTIFACT_NOT_VISITED);
-
+    /**
+     *
+     */
     private final Set<Status> NOT_VISITED_MARKED_SET = Set.of(Status.NOT_VISITED_MARKED, Status.ARTIFACT_NOT_VISITED_MARKED, Status.DANGEROUS_NOT_VISITED_MARKED);
     /**
      * Player Column
