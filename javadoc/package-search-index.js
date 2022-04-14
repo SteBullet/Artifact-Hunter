@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.artifacthunter","l":"com.example.artifacthunter"},{"m":"com.example.artifacthunter","l":"com.example.artifacthunter.models"}];updateSearchResults();
