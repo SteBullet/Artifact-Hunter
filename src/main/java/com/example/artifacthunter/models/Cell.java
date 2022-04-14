@@ -4,14 +4,36 @@ import javafx.scene.image.Image;
 
 //import java.util.Set;
 
+/**
+ * Single cell class
+ */
 public class Cell {
-
+    /**
+     *
+     */
     private Status status;
+    /**
+     *
+     */
     private int row;
+    /**
+     *
+     */
     private int col;
+    /**
+     *
+     */
     private Image image;
 
+
+    /**
+     *
+     * @param Col
+     * @param Row
+     * @param image
+     */
     public Cell(int Col, int Row, Image image) {
+
         status = Status.NOT_VISITED;
         //String[] index = id.split("separator");
         row = Row;
@@ -25,10 +47,18 @@ public class Cell {
         col = Col;
     }*/
 
+    /**
+     *
+     * @return
+     */
     public Status getStatus() {
         return status;
     }
 
+    /**
+     *
+     * @param status
+     */
     public void setStatus(Status status) {
         this.status = status;
         image = switch (status) {
@@ -39,26 +69,50 @@ public class Cell {
         };
     }
 
+    /**
+     *
+     * @return
+     */
     public int getRow() {
         return row;
     }
 
+    /**
+     *
+     * @param row
+     */
     public void setRow(int row) {
         this.row = row;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCol() {
         return col;
     }
 
+    /**
+     *
+     * @param col
+     */
     public void setCol(int col) {
         this.col = col;
     }
 
+    /**
+     *
+     * @return
+     */
     public Image getImage() {
         return image;
     }
 
+    /**
+     *
+     * @param image
+     */
     public void setImage(Image image) {
         this.image = image;
     }

@@ -14,12 +14,22 @@ import java.net.URL;
 import java.util.*;
 
 public class MainController implements Initializable {
-
+    /**
+     *
+     */
     private final Set<Status> NOT_VISITED_NOT_MARKED_SET = Set.of(Status.NOT_VISITED, Status.DANGEROUS_NOT_VISITED, Status.ARTIFACT_NOT_VISITED);
-
+    /**
+     *
+     */
     private final Set<Status> NOT_VISITED_MARKED_SET = Set.of(Status.NOT_VISITED_MARKED, Status.ARTIFACT_NOT_VISITED_MARKED, Status.DANGEROUS_NOT_VISITED_MARKED);
-
-    private int playerCol = 0, playerRow = 0;
+    /**
+     * Player Column
+     */
+    private int playerCol = 0;
+    /**
+     * Player Row
+     */
+    private int playerRow = 0;
 
     @FXML
     private Label welcomeText;
@@ -32,11 +42,15 @@ public class MainController implements Initializable {
     @FXML
     private GridPane playField;
 
+    /**
+     * List of playfield cells
+     */
     private List<List<Cell>> field;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int colCount = 10, rowCount = 10;
+        int colCount = 10;
+        int rowCount = 10;
         field = new ArrayList<>();
         for (int i = 0; i < colCount; i++) {
             field.add(new ArrayList<>());
@@ -48,6 +62,11 @@ public class MainController implements Initializable {
         RefreshField(10,10);
     }
 
+    /**
+     * Method description
+     * @param colCount
+     * @param rowCount
+     */
     private void RefreshField(int colCount, int rowCount) {
         playField.getChildren().removeAll(playField.getChildren());
         for (int i = 0; i < colCount; i++) {
