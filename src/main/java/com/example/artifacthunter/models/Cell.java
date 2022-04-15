@@ -63,7 +63,7 @@ public class Cell {
         this.status = status;
         image = switch (status) {
             case VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Visited Cell.png"));
-            case PLAYER_VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Player.png"));
+            case PLAYER_VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Player2.png"));
             case NOT_VISITED_MARKED -> new Image(getClass().getResourceAsStream("/Sprites/Marked Cell.png"));
             default -> new Image(getClass().getResourceAsStream("/Sprites/Default Cell.png"));
         };
