@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.example.artifacthunter","l":"Application"},{"p":"com.example.artifacthunter.models","l":"Cell"},{"p":"com.example.artifacthunter","l":"MainController"},{"p":"com.example.artifacthunter.models","l":"Status"}];updateSearchResults();
