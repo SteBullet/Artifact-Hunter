@@ -36,7 +36,7 @@ public class MainController implements Initializable {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+        welcomeText.setText("SteBullet is beutifull! 123131819984156g!, lead");
     }
 
     @FXML
