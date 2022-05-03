@@ -9,25 +9,25 @@ import javafx.scene.image.Image;
  */
 public class Cell {
     /**
-     *
+     * Status of cell
      */
     private Status status;
     /**
-     *
+     * Row in playfield
      */
     private int row;
     /**
-     *
+     * Col in playfield
      */
     private int col;
     /**
-     *
+     * Image on cell
      */
     private Image image;
 
 
     /**
-     *
+     * Constructor of cell
      * @param Col
      * @param Row
      * @param image

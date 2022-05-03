@@ -15,11 +15,11 @@ import java.util.*;
 
 public class MainController implements Initializable {
     /**
-     *
+     * Set of not visited, not marked statuses of cell
      */
     private final Set<Status> NOT_VISITED_NOT_MARKED_SET = Set.of(Status.NOT_VISITED, Status.DANGEROUS_NOT_VISITED, Status.ARTIFACT_NOT_VISITED);
     /**
-     *
+     * Set of not visited, marked statuses of cell
      */
     private final Set<Status> NOT_VISITED_MARKED_SET = Set.of(Status.NOT_VISITED_MARKED, Status.ARTIFACT_NOT_VISITED_MARKED, Status.DANGEROUS_NOT_VISITED_MARKED);
     /**
@@ -81,6 +81,7 @@ public class MainController implements Initializable {
                         col = Integer.parseInt(index[0]);
                         row = Integer.parseInt(index[1]);
                         if (Math.abs(playerCol - col) + Math.abs(playerRow - row) == 1) {
+                            //
                             field.get(playerCol).get(playerRow).setStatus(Status.VISITED);
                             field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
                             playerCol = col;
