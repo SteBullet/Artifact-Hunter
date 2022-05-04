@@ -63,6 +63,8 @@ public class MainController implements Initializable {
             }
         }
         field.get(playerCol).get(playerRow).setStatus(Status.PLAYER_VISITED);
+        field.get(1).get(1).setStatus(Status.DANGEROUS_NOT_VISITED);
+        field.get(2).get(2).setStatus(Status.ARTIFACT_NOT_VISITED);
         RefreshField(10,10);
     }
 
@@ -85,16 +87,27 @@ public class MainController implements Initializable {
                         col = Integer.parseInt(index[0]);
                         row = Integer.parseInt(index[1]);
                         if (Math.abs(playerCol - col) + Math.abs(playerRow - row) == 1) {
+                            field.get(playerCol).get(playerRow).setStatus(Status.VISITED);
+                            playerCol = col;
+                            playerRow = row;
                             if (DANGEROUS_SET.contains(field.get(col).get(row).getStatus()))
                             {
-
+                                field.get(col).get(row).setStatus(Status.PLAYER_DANGEROUS);
+                                StatusLabel.setText("GAME OVER");
+                                RefreshFieldEnd(10, 10);
                             }
                             else {
-                                field.get(playerCol).get(playerRow).setStatus(Status.VISITED);
-                                field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
-                                playerCol = col;
-                                playerRow = row;
-                                RefreshField(10, 10);
+                                if (field.get(col).get(row).getStatus() == Status.ARTIFACT_NOT_VISITED)
+                                {
+                                    field.get(col).get(row).setStatus(Status.PLAYER_ARTIFACT);
+                                    StatusLabel.setText("YOU FIND THE ARTIFACT! YOU WIN!");
+                                    RefreshFieldEnd(10, 10);
+                                }
+                                else
+                                {
+                                    field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
+                                    RefreshField(10, 10);
+                                }
                             }
                         }
                     }
@@ -137,6 +150,18 @@ public class MainController implements Initializable {
                         }
                     }
                 });
+                playField.add(iv, i, j);
+            }
+        }
+    }
+
+    private void RefreshFieldEnd(int colCount, int rowCount) {
+        playField.getChildren().removeAll(playField.getChildren());
+        for (int i = 0; i < colCount; i++) {
+            for (int j = 0; j < rowCount; j++) {
+                ImageView iv = new ImageView();
+                iv.setImage(field.get(i).get(j).getImage());
+                iv.setId(i + "separator" + j);
                 playField.add(iv, i, j);
             }
         }

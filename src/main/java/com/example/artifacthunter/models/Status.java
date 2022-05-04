@@ -33,7 +33,13 @@ public enum Status {
      * Safe cell that hasn't been visited by a player
      */
     NOT_VISITED,
+    /**
+     * Player found the artifact, win
+     */
     PLAYER_ARTIFACT,
+    /**
+     * Player on dangerous cell, end of game
+     */
     PLAYER_DANGEROUS,
     DANGEROUS_VISITED,
 }
