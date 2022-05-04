@@ -23,6 +23,10 @@ public class MainController implements Initializable {
      */
     private final Set<Status> NOT_VISITED_MARKED_SET = Set.of(Status.NOT_VISITED_MARKED, Status.ARTIFACT_NOT_VISITED_MARKED, Status.DANGEROUS_NOT_VISITED_MARKED);
     /**
+     * Set of dangerous statuses of cell
+     */
+    private final Set<Status> DANGEROUS_SET = Set.of(Status.DANGEROUS_NOT_VISITED, Status.DANGEROUS_NOT_VISITED_MARKED);
+    /**
      * Player Column
      */
     private int playerCol = 0;
@@ -32,11 +36,11 @@ public class MainController implements Initializable {
     private int playerRow = 0;
 
     @FXML
-    private Label welcomeText;
+    private Label StatusLabel;
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("SteBullet is beutifull! 123131819984156g!, lead");
+        StatusLabel.setText("SteBullet is beutifull! 123131819984156g!, lead");
     }
 
     @FXML
@@ -81,12 +85,17 @@ public class MainController implements Initializable {
                         col = Integer.parseInt(index[0]);
                         row = Integer.parseInt(index[1]);
                         if (Math.abs(playerCol - col) + Math.abs(playerRow - row) == 1) {
-                            //
-                            field.get(playerCol).get(playerRow).setStatus(Status.VISITED);
-                            field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
-                            playerCol = col;
-                            playerRow = row;
-                            RefreshField(10, 10);
+                            if (DANGEROUS_SET.contains(field.get(col).get(row).getStatus()))
+                            {
+
+                            }
+                            else {
+                                field.get(playerCol).get(playerRow).setStatus(Status.VISITED);
+                                field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
+                                playerCol = col;
+                                playerRow = row;
+                                RefreshField(10, 10);
+                            }
                         }
                     }
                     else

@@ -10,7 +10,7 @@
     </padding>
 
 
-    <Label fx:id="welcomeText" text="Test Front" />
+    <Label fx:id="StatusLabel" text="" />
    <GridPane fx:id="playField" alignment="CENTER" gridLinesVisible="true" hgap="2.0" vgap="2.0">
    </GridPane>
     <Button onAction="#onHelloButtonClick" prefWidth="55.0" text="Hello!" />
