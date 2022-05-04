@@ -65,6 +65,12 @@ public class Cell {
             case VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Visited Cell.png"));
             case PLAYER_VISITED -> new Image(getClass().getResourceAsStream("/Sprites/Player.png"));
             case NOT_VISITED_MARKED -> new Image(getClass().getResourceAsStream("/Sprites/Marked Cell.png"));
+            case ARTIFACT_NOT_VISITED_MARKED -> new Image(getClass().getResourceAsStream("/Sprites/Marked Cell.png"));
+            case DANGEROUS_NOT_VISITED_MARKED -> new Image(getClass().getResourceAsStream("/Sprites/Marked Cell.png"));
+            case PLAYER_DANGEROUS -> new Image(getClass().getResourceAsStream("/Sprites/Anomaly Cell.png"));
+            case PLAYER_ARTIFACT -> new Image(getClass().getResourceAsStream("/Sprites/Artifact Cell.png"));
+            case DANGEROUS_OPEN -> new Image(getClass().getResourceAsStream("/Sprites/Anomaly Cell.png"));
+            case ARTIFACT_OPEN -> new Image(getClass().getResourceAsStream("/Sprites/Artifact Cell.png"));
             default -> new Image(getClass().getResourceAsStream("/Sprites/Default Cell.png"));
         };
     }

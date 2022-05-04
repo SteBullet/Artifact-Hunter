@@ -41,5 +41,6 @@ public enum Status {
      * Player on dangerous cell, end of game
      */
     PLAYER_DANGEROUS,
-    DANGEROUS_VISITED,
+    DANGEROUS_OPEN,
+    ARTIFACT_OPEN
 }
