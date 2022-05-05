@@ -24,7 +24,14 @@ public class Cell {
      * Image on cell
      */
     private Image image;
-
+    /**
+     * Count of threats around
+     */
+    private int threats;
+    /**
+     * Distance to artifact
+     */
+    private double distance;
 
     /**
      * Constructor of cell
@@ -33,7 +40,6 @@ public class Cell {
      * @param image
      */
     public Cell(int Col, int Row, Image image) {
-
         status = Status.NOT_VISITED;
         //String[] index = id.split("separator");
         row = Row;
@@ -121,5 +127,21 @@ public class Cell {
      */
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public int getThreats() {
+        return threats;
+    }
+
+    public void setThreats(int threats) {
+        this.threats = threats;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }

@@ -51,6 +51,34 @@ public class MainController implements Initializable {
      */
     private List<List<Cell>> field;
 
+    public void GenerateField(int colCount, int rowCount, int countOfTreats)
+    {
+        int rand;
+        int cOT = countOfTreats;
+        for (int i = 1; i < colCount; i++)
+            for (int j = 1; j < rowCount; j++)
+            {
+                rand = (int)Math.random() * ((colCount - 2) * (rowCount - 2));
+                if (rand < countOfTreats && cOT > 0)
+                {
+                    field.get(i).get(j).setStatus(Status.DANGEROUS_NOT_VISITED);
+                    cOT--;
+                }
+                else
+                    field.get(i).get(j).setStatus(Status.NOT_VISITED);
+            }
+        int c, r;
+        c = (int)Math.random() * (colCount - 2) + 1;
+        r = (int)Math.random() * (rowCount - 2) + 1;
+        while (field.get(c).get(r).getStatus() == Status.DANGEROUS_NOT_VISITED)
+        {
+            c = (int)Math.random() * (colCount - 2) + 1;
+            r = (int)Math.random() * (rowCount - 2) + 1;
+        }
+        field.get(c).get(r).setStatus(Status.ARTIFACT_NOT_VISITED);
+        //
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int colCount = 10;
