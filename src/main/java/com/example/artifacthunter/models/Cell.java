@@ -2,8 +2,6 @@ package com.example.artifacthunter.models;
 
 import javafx.scene.image.Image;
 
-//import java.util.Set;
-
 /**
  * Single cell class
  */
@@ -41,17 +39,10 @@ public class Cell {
      */
     public Cell(int Col, int Row, Image image) {
         status = Status.NOT_VISITED;
-        //String[] index = id.split("separator");
         row = Row;
         col = Col;
         this.image = image;
     }
-
-    /*public void setIndex(int Col, int Row) {
-        //String[] index = id.split("separator");
-        row = Row;
-        col = Col;
-    }*/
 
     /**
      *

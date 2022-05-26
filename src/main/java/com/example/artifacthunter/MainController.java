@@ -129,10 +129,6 @@ public class MainController implements Initializable {
                 field.get(i).add(new Cell(i, j, new Image(getClass().getResourceAsStream("/Sprites/Default Cell.png"))));
             }
         }
-        //field.get(playerCol).get(playerRow).setStatus(Status.PLAYER_VISITED);
-        //field.get(1).get(1).setStatus(Status.DANGEROUS_NOT_VISITED);
-        //field.get(2).get(2).setStatus(Status.ARTIFACT_NOT_VISITED);
-        //RefreshField(10,10);
         GenerateField(10, 10, 15);
     }
 
