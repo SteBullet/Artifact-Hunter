@@ -147,7 +147,12 @@ public class MainController implements Initializable {
         for (int i = 0; i < colCount; i++) {
             for (int j = 0; j < rowCount; j++) {
                 ImageView iv = new ImageView();
-                iv.setImage(field.get(i).get(j).getImage());
+                try {
+                    iv.setImage(field.get(i).get(j).getImage());
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    StatusLabel.setText("Ошибка. Изображения не найдены.");
+                }
                 iv.setId(i + "separator" + j);
                 if (i == 0 || i == colCount - 1 || j == 0 || j == rowCount - 1)
                 iv.setOnMouseClicked(mouseEvent -> {
@@ -234,7 +239,12 @@ public class MainController implements Initializable {
         for (int i = 0; i < colCount; i++) {
             for (int j = 0; j < rowCount; j++) {
                 ImageView iv = new ImageView();
-                iv.setImage(field.get(i).get(j).getImage());
+                try {
+                    iv.setImage(field.get(i).get(j).getImage());
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    StatusLabel.setText("Ошибка. Изображения не найдены.");
+                }
                 iv.setId(i + "separator" + j);
                 iv.setOnMouseClicked(mouseEvent -> {
                     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
@@ -327,7 +337,12 @@ public class MainController implements Initializable {
                     field.get(i).get(j).setStatus(Status.ARTIFACT_OPEN);
                 if (field.get(i).get(j).getStatus() == Status.DANGEROUS_NOT_VISITED || field.get(i).get(j).getStatus() == Status.DANGEROUS_NOT_VISITED_MARKED)
                     field.get(i).get(j).setStatus(Status.DANGEROUS_OPEN);
-                iv.setImage(field.get(i).get(j).getImage());
+                try {
+                    iv.setImage(field.get(i).get(j).getImage());
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    StatusLabel.setText("Ошибка. Изображения не найдены.");
+                }
                 iv.setId(i + "separator" + j);
                 playField.add(iv, i, j);
             }
