@@ -58,6 +58,11 @@ public class MainController implements Initializable {
      */
     private List<List<Cell>> field;
 
+    /**
+     * Random filling of the field
+     * @param colCount
+     * @param rowCount
+     */
     public void GenerateField(int colCount, int rowCount, int countOfTreats)
     {
         for (int i = 0; i < colCount; i++)
@@ -133,7 +138,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Method description
+     * Refreshing field at first time of new game
      * @param colCount
      * @param rowCount
      */
@@ -219,6 +224,11 @@ public class MainController implements Initializable {
         DistanceLabel.setText("Distance: unknown");
     }
 
+    /**
+     * Refreshing field not first and not last time in the one game
+     * @param colCount
+     * @param rowCount
+     */
     private void RefreshField(int colCount, int rowCount) {
         playField.getChildren().removeAll(playField.getChildren());
         for (int i = 0; i < colCount; i++) {
@@ -303,6 +313,11 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Refreshing field at last time of the game
+     * @param colCount
+     * @param rowCount
+     */
     private void RefreshFieldEnd(int colCount, int rowCount) {
         playField.getChildren().removeAll(playField.getChildren());
         for (int i = 0; i < colCount; i++) {
