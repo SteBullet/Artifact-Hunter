@@ -65,70 +65,60 @@ public class MainController implements Initializable {
      */
     public void GenerateField(int colCount, int rowCount, int countOfTreats)
     {
-        for (int i = 0; i < colCount + 2; i++)
-        {
-            field.get(i).get(0).setStatus(Status.NOT_VISITED);
-            field.get(i).get(1).setStatus(Status.NOT_VISITED);
-            field.get(i).get(rowCount).setStatus(Status.NOT_VISITED);
-            field.get(i).get(rowCount+1).setStatus(Status.NOT_VISITED);
-        }
-        for (int j = 0; j < rowCount + 2; j++)
-        {
-            field.get(0).get(j).setStatus(Status.NOT_VISITED);
-            field.get(1).get(j).setStatus(Status.NOT_VISITED);
-            field.get(colCount).get(j).setStatus(Status.NOT_VISITED);
-            field.get(colCount+1).get(j).setStatus(Status.NOT_VISITED);
-        }
-        int rand;
-        int cOT = countOfTreats;
-        for (int i = 2; i < colCount; i++)
-            for (int j = 2; j < rowCount; j++)
-            {
-                rand = (int)(Math.random() * ((colCount - 2) * (rowCount - 2)));
-                if (rand < countOfTreats && cOT > 0)
-                {
-                    field.get(i).get(j).setStatus(Status.DANGEROUS_NOT_VISITED);
+        if (countOfTreats > colCount * rowCount / 2)
+            StatusLabel.setText("Too many threats!");
+        else {
+            for (int i = 0; i < colCount + 2; i++)
+                for (int j = 0; j < rowCount + 2; j++) {
+                    field.get(i).get(j).setStatus(Status.NOT_VISITED);
+                    field.get(i).get(j).setStatus(Status.NOT_VISITED);
+                }
+            int randCol;
+            int randRow;
+            int cOT = countOfTreats;
+            while (cOT > 0) {
+                randCol = (int) (Math.random() * (colCount - 2) + 2);
+                randRow = (int) (Math.random() * (rowCount - 2) + 2);
+                if (field.get(randCol).get(randRow).getStatus() != Status.DANGEROUS_NOT_VISITED) {
+                    field.get(randCol).get(randRow).setStatus(Status.DANGEROUS_NOT_VISITED);
                     cOT--;
                 }
-                else
-                    field.get(i).get(j).setStatus(Status.NOT_VISITED);
-                field.get(i).get(j).setThreats(0);
             }
-        int c, r;
-        c = (int)(Math.random() * (colCount - 2) + 2);
-        r = (int)(Math.random() * (rowCount - 2) + 2);
-        while (field.get(c).get(r).getStatus() == Status.DANGEROUS_NOT_VISITED)
-        {
-            c = (int)(Math.random() * (colCount - 2) + 2);
-            r = (int)(Math.random() * (rowCount - 2) + 2);
+            int c, r;
+            c = (int) (Math.random() * (colCount - 2) + 2);
+            r = (int) (Math.random() * (rowCount - 2) + 2);
+            while (field.get(c).get(r).getStatus() == Status.DANGEROUS_NOT_VISITED) {
+                c = (int) (Math.random() * (colCount - 2) + 2);
+                r = (int) (Math.random() * (rowCount - 2) + 2);
+            }
+            field.get(c).get(r).setStatus(Status.ARTIFACT_NOT_VISITED);
+            for (int i = 1; i < colCount + 1; i++)
+                for (int j = 1; j < rowCount + 1; j++) {
+                    if (field.get(i - 1).get(j - 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i).get(j - 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i + 1).get(j - 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i + 1).get(j).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i + 1).get(j + 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i).get(j + 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i - 1).get(j + 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    if (field.get(i - 1).get(j).getStatus() == Status.DANGEROUS_NOT_VISITED)
+                        field.get(i).get(j).setThreats(field.get(i).get(j).getThreats() + 1);
+                    field.get(i).get(j).setDistance(Math.sqrt(Math.pow(Math.abs(i - c), 2) + Math.pow(Math.abs(j - r), 2)));
+                }
+            RefreshFieldStart(10, 10);
         }
-        field.get(c).get(r).setStatus(Status.ARTIFACT_NOT_VISITED);
-        for (int i = 1; i < colCount + 1; i++)
-            for (int j = 1; j < rowCount + 1; j++)
-            {
-                if (field.get(i-1).get(j-1).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i).get(j-1).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i+1).get(j-1).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i+1).get(j).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i+1).get(j+1).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i).get(j+1).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i-1).get(j+1).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                if (field.get(i-1).get(j).getStatus() == Status.DANGEROUS_NOT_VISITED)
-                    field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
-                field.get(i).get(j).setDistance(Math.sqrt(Math.pow(Math.abs(i-c),2) + Math.pow(Math.abs(j-r),2)));
-            }
-        RefreshFieldStart(10, 10);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         int colCount = 10;
         int rowCount = 10;
         field = new ArrayList<>();
