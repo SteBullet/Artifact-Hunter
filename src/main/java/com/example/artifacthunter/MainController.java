@@ -65,20 +65,24 @@ public class MainController implements Initializable {
      */
     public void GenerateField(int colCount, int rowCount, int countOfTreats)
     {
-        for (int i = 0; i < colCount; i++)
+        for (int i = 0; i < colCount + 2; i++)
         {
             field.get(i).get(0).setStatus(Status.NOT_VISITED);
-            field.get(i).get(rowCount-1).setStatus(Status.NOT_VISITED);
+            field.get(i).get(1).setStatus(Status.NOT_VISITED);
+            field.get(i).get(rowCount).setStatus(Status.NOT_VISITED);
+            field.get(i).get(rowCount+1).setStatus(Status.NOT_VISITED);
         }
-        for (int j = 0; j < rowCount; j++)
+        for (int j = 0; j < rowCount + 2; j++)
         {
             field.get(0).get(j).setStatus(Status.NOT_VISITED);
-            field.get(colCount-1).get(j).setStatus(Status.NOT_VISITED);
+            field.get(1).get(j).setStatus(Status.NOT_VISITED);
+            field.get(colCount).get(j).setStatus(Status.NOT_VISITED);
+            field.get(colCount+1).get(j).setStatus(Status.NOT_VISITED);
         }
         int rand;
         int cOT = countOfTreats;
-        for (int i = 1; i < colCount - 1; i++)
-            for (int j = 1; j < rowCount - 1; j++)
+        for (int i = 2; i < colCount; i++)
+            for (int j = 2; j < rowCount; j++)
             {
                 rand = (int)(Math.random() * ((colCount - 2) * (rowCount - 2)));
                 if (rand < countOfTreats && cOT > 0)
@@ -91,16 +95,16 @@ public class MainController implements Initializable {
                 field.get(i).get(j).setThreats(0);
             }
         int c, r;
-        c = (int)(Math.random() * (colCount - 2) + 1);
-        r = (int)(Math.random() * (rowCount - 2) + 1);
+        c = (int)(Math.random() * (colCount - 2) + 2);
+        r = (int)(Math.random() * (rowCount - 2) + 2);
         while (field.get(c).get(r).getStatus() == Status.DANGEROUS_NOT_VISITED)
         {
-            c = (int)(Math.random() * (colCount - 2) + 1);
-            r = (int)(Math.random() * (rowCount - 2) + 1);
+            c = (int)(Math.random() * (colCount - 2) + 2);
+            r = (int)(Math.random() * (rowCount - 2) + 2);
         }
         field.get(c).get(r).setStatus(Status.ARTIFACT_NOT_VISITED);
-        for (int i = 1; i < colCount - 1; i++)
-            for (int j = 1; j < rowCount - 1; j++)
+        for (int i = 1; i < colCount + 1; i++)
+            for (int j = 1; j < rowCount + 1; j++)
             {
                 if (field.get(i-1).get(j-1).getStatus() == Status.DANGEROUS_NOT_VISITED)
                     field.get(i).get(j).setThreats(field.get(i).get(j).getThreats()+1);
@@ -128,9 +132,9 @@ public class MainController implements Initializable {
         int colCount = 10;
         int rowCount = 10;
         field = new ArrayList<>();
-        for (int i = 0; i < colCount; i++) {
+        for (int i = 0; i < colCount + 2; i++) {
             field.add(new ArrayList<>());
-            for (int j = 0; j < rowCount; j++) {
+            for (int j = 0; j < rowCount + 2; j++) {
                 field.get(i).add(new Cell(i, j, new Image(getClass().getResourceAsStream("/Sprites/Default Cell.png"))));
             }
         }
@@ -144,8 +148,8 @@ public class MainController implements Initializable {
      */
     private void RefreshFieldStart(int colCount, int rowCount) {
         playField.getChildren().removeAll(playField.getChildren());
-        for (int i = 0; i < colCount; i++) {
-            for (int j = 0; j < rowCount; j++) {
+        for (int i = 1; i < colCount+1; i++) {
+            for (int j = 1; j < rowCount+1; j++) {
                 ImageView iv = new ImageView();
                 try {
                     iv.setImage(field.get(i).get(j).getImage());
@@ -154,34 +158,19 @@ public class MainController implements Initializable {
                     StatusLabel.setText("Ошибка. Изображения не найдены.");
                 }
                 iv.setId(i + "separator" + j);
-                if (i == 0 || i == colCount - 1 || j == 0 || j == rowCount - 1)
+                if (i == 1 || i == colCount || j == 1 || j == rowCount)
                 iv.setOnMouseClicked(mouseEvent -> {
                     if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                         int col, row;
                         String[] index = iv.getId().split("separator");
                         col = Integer.parseInt(index[0]);
                         row = Integer.parseInt(index[1]);
-                            playerCol = col;
-                            playerRow = row;
-                            if (DANGEROUS_SET.contains(field.get(col).get(row).getStatus()))
-                            {
-                                field.get(col).get(row).setStatus(Status.PLAYER_DANGEROUS);
-                                StatusLabel.setText("GAME OVER");
-                                RefreshFieldEnd(10, 10);
-                            }
-                            else {
-                                if (field.get(col).get(row).getStatus() == Status.ARTIFACT_NOT_VISITED)
-                                {
-                                    field.get(col).get(row).setStatus(Status.PLAYER_ARTIFACT);
-                                    StatusLabel.setText("YOU FIND THE ARTIFACT! YOU WIN!");
-                                    RefreshFieldEnd(10, 10);
-                                }
-                                else
-                                {
-                                    field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
-                                    RefreshField(10, 10);
-                                }
-                            }
+                        playerCol = col;
+                        playerRow = row;
+                        field.get(col).get(row).setStatus(Status.PLAYER_VISITED);
+                        ThreatsLabel.setText("Threats: " + field.get(col).get(row).getThreats());
+                        DistanceLabel.setText("Distance: " + field.get(col).get(row).getDistance());
+                        RefreshField(10, 10);
                         }
                     else
                     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
@@ -236,8 +225,8 @@ public class MainController implements Initializable {
      */
     private void RefreshField(int colCount, int rowCount) {
         playField.getChildren().removeAll(playField.getChildren());
-        for (int i = 0; i < colCount; i++) {
-            for (int j = 0; j < rowCount; j++) {
+        for (int i = 1; i < colCount+1; i++) {
+            for (int j = 1; j < rowCount+1; j++) {
                 ImageView iv = new ImageView();
                 try {
                     iv.setImage(field.get(i).get(j).getImage());
@@ -275,9 +264,9 @@ public class MainController implements Initializable {
                                     RefreshField(10, 10);
                                 }
                             }
+                            ThreatsLabel.setText("Threats: " + field.get(col).get(row).getThreats());
+                            DistanceLabel.setText("Distance: " + field.get(col).get(row).getDistance());
                         }
-                        ThreatsLabel.setText("Threats: " + field.get(col).get(row).getThreats());
-                        DistanceLabel.setText("Distance: " + field.get(col).get(row).getDistance());
                     }
                     else
                     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
@@ -330,8 +319,8 @@ public class MainController implements Initializable {
      */
     private void RefreshFieldEnd(int colCount, int rowCount) {
         playField.getChildren().removeAll(playField.getChildren());
-        for (int i = 0; i < colCount; i++) {
-            for (int j = 0; j < rowCount; j++) {
+        for (int i = 1; i < colCount+1; i++) {
+            for (int j = 1; j < rowCount+1; j++) {
                 ImageView iv = new ImageView();
                 if (field.get(i).get(j).getStatus() == Status.ARTIFACT_NOT_VISITED || field.get(i).get(j).getStatus() == Status.ARTIFACT_NOT_VISITED_MARKED)
                     field.get(i).get(j).setStatus(Status.ARTIFACT_OPEN);
