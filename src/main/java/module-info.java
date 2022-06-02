@@ -6,4 +6,5 @@ module com.example.artifacthunter {
 
     opens com.example.artifacthunter to javafx.fxml;
     exports com.example.artifacthunter;
+    exports com.example.artifacthunter.test;
 }
