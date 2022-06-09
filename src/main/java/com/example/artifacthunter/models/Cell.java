@@ -43,19 +43,10 @@ public class Cell {
         col = Col;
         this.image = image;
     }
-
-    /**
-     *
-     * @return
-     */
     public Status getStatus() {
         return status;
     }
 
-    /**
-     *
-     * @param status
-     */
     public void setStatus(Status status) {
         this.status = status;
         image = switch (status) {
@@ -72,50 +63,26 @@ public class Cell {
         };
     }
 
-    /**
-     *
-     * @return
-     */
     public int getRow() {
         return row;
     }
 
-    /**
-     *
-     * @param row
-     */
     public void setRow(int row) {
         this.row = row;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getCol() {
         return col;
     }
 
-    /**
-     *
-     * @param col
-     */
     public void setCol(int col) {
         this.col = col;
     }
 
-    /**
-     *
-     * @return
-     */
     public Image getImage() {
         return image;
     }
 
-    /**
-     *
-     * @param image
-     */
     public void setImage(Image image) {
         this.image = image;
     }

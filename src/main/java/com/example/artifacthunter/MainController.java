@@ -84,6 +84,7 @@ public class MainController implements Initializable {
                     cOT--;
                 }
             }
+
             int c, r;
             c = (int) (Math.random() * (colCount - 2) + 2);
             r = (int) (Math.random() * (rowCount - 2) + 2);
@@ -92,6 +93,7 @@ public class MainController implements Initializable {
                 r = (int) (Math.random() * (rowCount - 2) + 2);
             }
             field.get(c).get(r).setStatus(Status.ARTIFACT_NOT_VISITED);
+
             for (int i = 1; i < colCount + 1; i++)
                 for (int j = 1; j < rowCount + 1; j++) {
                     if (field.get(i - 1).get(j - 1).getStatus() == Status.DANGEROUS_NOT_VISITED)
@@ -209,7 +211,7 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Refreshing field not first and not last time in the one game
+     * Refreshing field every turn (except fist and last round)
      * @param colCount
      * @param rowCount
      */
