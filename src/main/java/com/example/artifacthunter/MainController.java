@@ -71,7 +71,7 @@ public class MainController implements Initializable {
             for (int i = 0; i < colCount + 2; i++)
                 for (int j = 0; j < rowCount + 2; j++) {
                     field.get(i).get(j).setStatus(Status.NOT_VISITED);
-                    field.get(i).get(j).setStatus(Status.NOT_VISITED);
+                    field.get(i).get(j).setThreats(0);
                 }
             int randCol;
             int randRow;
